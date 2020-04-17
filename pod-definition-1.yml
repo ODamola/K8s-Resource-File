@@ -1,0 +1,24 @@
+apiVersion: v1 # This is the api version of the object to be created 
+kind: Pod # This specifies the type of object to be created 
+metadata:
+  name: myapp-pod # This is the name given to the Pod
+  labels:
+  namespace: dev
+    app: myapp
+    tier: frond-end
+spec: # This defines whats in the object we are creating
+  containers:
+    - name: nginx-container # nginx-container is the name of the image in Docker repository
+      image: nginx
+  nodeSelector: # Setting limitation on this pod to only go to the Large node
+    size: Large # This corresponds to the labels already set on nodes
+
+  affinity: # Setting limitation on node using NodeAffinity
+    nodeAffinity:
+      requiredDuringSchedulingIgnoreDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: size
+              operator: In # Operators are In, NotIn, Exist
+              values:
+              - Large

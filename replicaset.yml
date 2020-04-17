@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+  annotations:
+    buildversion: 1.34
+
+spec:
+  replicas: 3
+  selector:   # This helps to identify what pod fall under it.
+    matchLabels:
+      tier: front-end # This corresponds with the pod
+
+  template: # This is a pod specification template which must correspond to the pod 
+    metadata:
+      name: myapp-pod
+      label:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Binding
+metadata:
+    name: nginx
+
+target:
+    apiVersion: v1
+    kind: node
+    name: node2
+
+# In cases of binding, you'd be required to send a post command to the pod binding

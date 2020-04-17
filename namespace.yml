@@ -1,0 +1,4 @@
+apiVersion: v1 # This is the api version of the object to be created 
+kind: Namespace # This specifies the type of object to be created 
+metadata:
+  name: dev 

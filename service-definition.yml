@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: myapp-service
+
+spec:
+    type: NodePort # Type of service we are creating
+    port:
+      - targetPort: 80 # Port on the pod
+        port: 80 # Port on the service object
+        nodePort: 30008 # Port on the Node 30000 - 32767
+    selector: # This is how K8s knows which pod to assign this to using the specified labels
+      app: myapp
+      type: front-end
+    

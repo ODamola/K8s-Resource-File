@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: back-end
+
+spec:
+    type: ClusterIP # Type of service we are creating
+    port:
+      - targetPort: 80 # Port on the pod
+        port: 80 # Port on the service object
+    selector: # This is how K8s knows which pod to assign this to using the specified labels
+      app: myapp
+      type: back-end
