@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: developer
+rules: # Rules always consist of three sections
+- apiGroups: [""]
+  resources: ["pods"] # This gives developer access to pods with below privileges
+  verbs: ["list", "get", "create", "update", "delete"]
+
+- apiGroups: [""]
+  resources: ["ConfigMap"] # This allows developers to create a ConfigMap
+  verbs: ["create"]
+  
