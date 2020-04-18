@@ -1,0 +1,14 @@
+apiVersion: certificates.k8s.io/v1beta1
+kind: CertificateSigningRequest
+metadata:
+  name: jane
+spec:
+  groups: # This is the group the user belongs to
+  - system:authenticated
+  usages: # Indicates what the certs will be used for
+  - digital signature
+  - key encipherment
+  - server auth
+  request:
+    # After converting the generated csr to base64, you can paste here. 
+    # >> cat jane.csr | base64
