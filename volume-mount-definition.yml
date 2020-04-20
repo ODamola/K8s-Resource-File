@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: randon-number-generator
+spec:
+  containers:
+  - image: alpine
+    name: alpine
+    command: ["/bin/sh","-c"]
+    args: ["shuf -1 0-100 -n >> /opt/number.out;"]
+    volumeMounts: # Mounts the volume created
+    - mountPath: /opt
+      name: data-volume
+
+  volumes: # Creating a volume for the container
+  - name: data-volume
+    hostPath: # the volume is stored in /data Directory on the host
+      path: /data
+      type: Directory
+  
