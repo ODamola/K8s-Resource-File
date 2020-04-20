@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistenVolume
+metadata:
+  name: pv-vol1
+spec:
+  accessModes: # It could be ReadWriteOnce, ReadOnlyMany and ReadWriteMany
+    - ReadWriteOnce
+  capacity: # This specifies the amount of storage to br reserved for the PV
+    storage: 1Gi
+  hostPath: # This specifies where/location the data will be stored, and it indicated directory on the node 
+    path: /tmp/data  
+  
+  # Also we can specify external storage as used in most production
+  awsElasticBlockStore:
+    volumeID: <volume-id>
+    fsType: ext4
